@@ -1,16 +1,16 @@
-// app/api/chat-history/[userId]/route.ts
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import ChatModel from "@/model/ChatSession";
 
+// Use NextRequest, not plain Request
 export async function GET(
-  req: Request,
-  context: { params: Record<string, string> }
+  req: NextRequest,
+  { params }: { params: { userId: string } }
 ) {
   try {
     await dbConnect();
 
-    const userId = context.params.userId;
+    const { userId } = params;
 
     const chat = await ChatModel.findOne({ userId });
     if (!chat) {
