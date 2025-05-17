@@ -2,15 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import ChatModel from "@/model/ChatSession";
 
-// Use NextRequest, not plain Request
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  context: { params: Promise<{ userId: string }> }
 ) {
   try {
     await dbConnect();
 
-    const { userId } = params;
+    const { userId } = await context.params;
 
     const chat = await ChatModel.findOne({ userId });
     if (!chat) {
