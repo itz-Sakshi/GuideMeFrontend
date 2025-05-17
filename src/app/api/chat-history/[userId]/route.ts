@@ -5,12 +5,12 @@ import ChatModel from "@/model/ChatSession";
 
 export async function GET(
   req: Request,
-  { params }: { params: { userId: string } }
+  context: { params: { userId: string } }
 ) {
   try {
     await dbConnect();
 
-    const { userId } = await params;
+    const { userId } = context.params;
 
     const chat = await ChatModel.findOne({ userId });
     if (!chat) {
