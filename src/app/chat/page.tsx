@@ -120,9 +120,9 @@ export default function ChatPage() {
 
   return (
     <div className="h-[100vh] w-full  bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
-      <div className="h-full p-4 w-[85%] mx-auto space-y-4 mt-12 bg-black z-10">
+      <div className="h-full p-4 w-[85%] mx-auto space-y-4 mt-14 bg-black z-10">
         <h1 className="text-xl font-semibold text-white">GuideMe Chat</h1>
-        <div className="border p-4 rounded h-[80%] overflow-y-scroll space-y-2 bg-gray-100">
+        <div className="border p-4 rounded h-[50%] md:h-[80%] overflow-y-scroll space-y-2 bg-gray-100">
           {messages.map((msg, i) => (
             <div
               key={i}
