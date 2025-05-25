@@ -106,7 +106,7 @@ const ResumeUpload = () => {
   };
 
   return (
-    <div className="bg-slate-900 h-screen text-white flex flex-col justify-center items-center pt-25 p-15 md:p-30">
+    <div className="bg-slate-900 h-screen text-white flex flex-col justify-center items-center pt-20 p-15 sm:p-30">
       <h1 className="text-xl md:text-2xl font-semibold mb-6 text-center">
         Upload your resume so our AI can understand your education and work
         experience.

@@ -83,7 +83,7 @@ export const FileUpload = ({
             Drag or drop your resume here or click to upload
           </p>
 
-          <div className="relative w-[60%] md:w-[40%] mt-10 max-w-xl flex justify-center items-center">
+          <div className="relative w-[70%] md:w-[40%] mt-10 max-w-xl flex justify-center items-center">
             {files.length > 0 &&
               files.map((file, idx) => (
                 <motion.div

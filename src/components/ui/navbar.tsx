@@ -92,7 +92,7 @@ const Navbar = () => {
           <Link href="/sign-in" className="pr-5">
             <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full hover:border-blue-300 hover:border-x-fuchsia-200 hover:cursor-pointer">
               <span>Log In</span>
-              <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
+              <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent to-transparent  h-px" />
             </button>
           </Link>
         </>
