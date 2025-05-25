@@ -113,7 +113,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="flex sm:justify-between justify-center  bg-neutral-950 items-center space-x-6 px-10 md:px-24 md:h-screen">
+    <div className="flex sm:justify-between justify-center  bg-neutral-950 items-center space-x-6 px-10 md:px-24 h-screen my-auto">
       <div className="sm:w-1/2 sm:block hidden max-w-md rounded-lg shadow-md h-full z-100">
       <Image className="h-[100vh] w-full"
         src="/images/SignUp_CN_tower.jpg" // Path to your image (public folder)
@@ -122,9 +122,9 @@ const SignUpPage = () => {
         height={50} // Desired height
       />
       </div>
-      <div className="sm:w-1/2 w-full max-w-md p-4 mt-12 bg-white rounded-lg space-y-2 shadow-md z-100">
+      <div className="sm:w-1/2 w-full max-w-md p-4 mt-14 bg-white rounded-lg space-y-2 shadow-md z-100">
         <div className="text-center">
-          <h1 className="text-2xl font-extrabold tracking-tight lg:text-5xl z-10">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl z-10">
             <span className="text-green-500">Join</span> GuideMe.ca
           </h1>
           <p className="hidden sm:block md:m-6 m-2">

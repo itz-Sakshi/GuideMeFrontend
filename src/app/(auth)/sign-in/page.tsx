@@ -96,7 +96,7 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex sm:justify-between justify-center  bg-neutral-950 items-center space-x-6 px-10 md:px-24 h-screen">
+    <div className="flex sm:justify-between justify-center bg-neutral-950 items-center space-x-6 px-10 md:px-24 h-screen my-auto">
       <div className="sm:w-1/2 sm:block hidden max-w-md rounded-lg shadow-md h-full z-100">
         <Image
           className="h-[100vh] w-full"
@@ -106,9 +106,9 @@ export default function SignInForm() {
           height={50} // Desired height
         />
       </div>
-      <div className="sm:w-1/2 w-full max-w-md md:p-4 p-2 mt-14 bg-white rounded-lg space-y-2 shadow-md h-[80%] z-100">
+      <div className="sm:w-1/2 w-full max-w-md md:p-4 p-2 mt-14 bg-white rounded-lg space-y-2 shadow-md z-100">
         <div className="text-center">
-          <h1 className="md:text-4xl text-2xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             GuideMe.ca
           </h1>
           <p className="hidden sm:block md:m-6 m-2">
