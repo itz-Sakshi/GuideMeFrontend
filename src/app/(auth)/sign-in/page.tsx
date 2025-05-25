@@ -96,7 +96,7 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex sm:justify-between justify-center bg-neutral-950 items-center space-x-6 px-10 md:px-24 h-screen my-auto">
+    <div className="flex sm:justify-between justify-center bg-neutral-950 items-center space-x-6 px-4 md:px-24 h-screen my-auto">
       <div className="sm:w-1/2 sm:block hidden max-w-md rounded-lg shadow-md h-full z-100">
         <Image
           className="h-[100vh] w-full"
