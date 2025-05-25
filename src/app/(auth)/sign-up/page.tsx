@@ -127,7 +127,7 @@ const SignUpPage = () => {
           <h1 className="text-2xl font-extrabold tracking-tight lg:text-5xl z-10">
             <span className="text-green-500">Join</span> GuideMe.ca
           </h1>
-          <p className="m-6">
+          <p className="hidden sm:block md:m-6 m-2">
             Sign up to get professional answers to all your immigration
             questions
           </p>
@@ -188,7 +188,7 @@ const SignUpPage = () => {
             </Button>
           </form>
         </Form>
-        <p className="font-semibold w-full text-center my-2">Or</p>
+        <p className="font-semibold w-full text-center md:my-2 my-1">Or</p>
         <div>
           <Button className="w-full cursor-pointer" onClick={() => signIn("google")}>
             {" "}
@@ -205,7 +205,7 @@ const SignUpPage = () => {
         </div>
         <div>
           <Button className="w-full cursor-pointer">
-          <Link href="/chat" className="text-blue-600 hover:text-blue-800">
+          <Link href="/chat" className="text-blue-400 hover:text-blue-800">
               Continue as a Guest
             </Link>
           </Button>

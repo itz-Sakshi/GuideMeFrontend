@@ -111,7 +111,7 @@ export default function SignInForm() {
           <h1 className="md:text-4xl text-2xl font-extrabold tracking-tight lg:text-5xl mb-6">
             GuideMe.ca
           </h1>
-          <p className="m-6">
+          <p className="hidden sm:block md:m-6 m-2">
             Sign in to get reliable Canadian immigration guidance
           </p>
         </div>
@@ -144,7 +144,7 @@ export default function SignInForm() {
             </Button>
           </form>
         </Form>
-        <p className="font-semibold w-full text-center mb-2">Or</p>
+        <p className="font-semibold w-full text-center md:my-2 my-1">Or</p>
         <div>
           <Button
             className="w-full cursor-pointer"
@@ -164,7 +164,7 @@ export default function SignInForm() {
         </div>
         <div>
           <Button className="w-full cursor-pointer">
-            <Link href="/chat" className="text-blue-600 hover:text-blue-800">
+            <Link href="/chat" className="text-blue-400 hover:text-blue-800">
               Continue as a Guest
             </Link>
           </Button>
