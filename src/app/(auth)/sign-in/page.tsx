@@ -106,7 +106,7 @@ export default function SignInForm() {
           height={50} // Desired height
         />
       </div>
-      <div className="sm:w-1/2 w-full max-w-md md:p-4 p-2 mt-14 bg-white rounded-lg space-y-2 shadow-md z-100">
+      <div className="sm:w-1/2 w-full max-w-md p-4  mt-14 bg-white rounded-lg space-y-3 shadow-md z-100">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             GuideMe.ca
