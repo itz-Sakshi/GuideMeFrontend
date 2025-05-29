@@ -109,7 +109,7 @@ const Navbar = () => {
         </>
       ) : (
         <>
-          <Link href="/sign-in" className="pr-5">
+          <Link href="/sign-in" className="">
             <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full hover:border-blue-300 hover:border-x-fuchsia-200 hover:cursor-pointer">
               <span>Log In</span>
               <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent to-transparent  h-px" />
@@ -129,10 +129,10 @@ const Navbar = () => {
           }}
           value={language}
         >
-          <SelectTrigger className="w-[120px] bg-white text-black text-sm ml-0 rounded-full">
+          <SelectTrigger className="w-[80px] bg-slate-400 text-black text-sm ml-0 rounded-full">
             <SelectValue placeholder="Select language" />
           </SelectTrigger>
-          <SelectContent className="bg-white text-black z-100">
+          <SelectContent className="bg-white text-black z-[5001]">
             <SelectItem value="en">English</SelectItem>
             <SelectItem value="fr">French</SelectItem>
           </SelectContent>
