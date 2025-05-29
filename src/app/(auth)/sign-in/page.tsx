@@ -24,6 +24,7 @@ import Image from "next/image";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { refreshUserFlags } from "@/lib/utils";
 import { useEffect } from "react";
+import { IconBrandGoogle } from "@tabler/icons-react";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -151,6 +152,7 @@ export default function SignInForm() {
             onClick={() => signIn("google")}
           >
             {" "}
+            <IconBrandGoogle></IconBrandGoogle>
             Connect With Your Google Account
           </Button>
         </div>

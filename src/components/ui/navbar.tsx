@@ -129,12 +129,12 @@ const Navbar = () => {
           }}
           value={language}
         >
-          <SelectTrigger className="w-[99px] bg-[#a69b9b] text-black text-sm ml-0 rounded-full">
+          <SelectTrigger className="w-[70px] bg-[#a69b9b] text-black text-sm ml-0 rounded-full">
             <SelectValue placeholder="Select language" />
           </SelectTrigger>
           <SelectContent className="bg-white text-black z-[5001]">
-            <SelectItem value="en">English</SelectItem>
-            <SelectItem value="fr">French</SelectItem>
+            <SelectItem value="en">En</SelectItem>
+            <SelectItem value="fr">Fr</SelectItem>
           </SelectContent>
         </Select>
       )}
