@@ -37,7 +37,7 @@ const Navbar = () => {
         }
       }
     };
-    const savedLang = localStorage.getItem("chat_language") as "en" | "fr";
+    const savedLang = sessionStorage.getItem("chat_language") as "en" | "fr";
     if (savedLang) {
       setLanguage(savedLang);
     }
@@ -114,7 +114,7 @@ const Navbar = () => {
           onChange={(e) => {
             const selectedLang = e.target.value as "en" | "fr";
             setLanguage(selectedLang);
-            localStorage.setItem("chat_language", selectedLang);
+            sessionStorage.setItem("chat_language", selectedLang);
           }}
           className="bg-white text-black rounded px-2 py-1 text-sm"
           disabled={

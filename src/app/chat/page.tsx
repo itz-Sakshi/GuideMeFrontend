@@ -22,7 +22,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const lang = localStorage.getItem("chat_language") || "en";
+  const lang = sessionStorage.getItem("chat_language") || "en";
 
 
   // const pathname = usePathname();
