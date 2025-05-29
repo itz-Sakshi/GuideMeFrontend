@@ -22,55 +22,71 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const lang = sessionStorage.getItem("chat_language") || "en";
-
+  const [lang, setLang] = useState("en");
 
   // const pathname = usePathname();
 
   // Optional: Load previous messages (if you want to fetch on mount)
   useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!userId && messages.length > 0) {
-        e.preventDefault();
-        e.returnValue = ""; // deprecated but still required
-      }
-    };
-    const fetchHistory = async () => {
-      const res = await axios.get(`/api/chat-history/${userId}`);
-      // console.log(res.data.messages);
-      setMessages(res.data.messages);
-    };
+  if (typeof window !== "undefined") {
+    const storedLang = sessionStorage.getItem("chat_language");
+    if (storedLang) setLang(storedLang);
 
     const hasShown = sessionStorage.getItem("shown_guest_toast");
-
     if (!userId && !hasShown) {
       toast("Want better answers and saved chat?", {
         id: "guest-toast",
         description:
           "Sign in and submit your profile & resume for personalized immigration help.",
-        duration: Infinity, // stays until dismissed
+        duration: Infinity,
         action: {
           label: "Sign In",
           onClick: () => router.push("/sign-in"),
         },
         cancel: {
           label: "Skip",
-          onClick: () => {}, // no-op
+          onClick: () => {},
         },
       });
       sessionStorage.setItem("shown_guest_toast", "true");
     }
-    if (userId) fetchHistory();
+  }
+}, [userId, router]);
+
+useEffect(() => {
+  const fetchHistory = async () => {
+    if (userId) {
+      const res = await axios.get(`/api/chat-history/${userId}`);
+      setMessages(res.data.messages);
+    }
+  };
+
+  fetchHistory();
+
+  const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+    if (!userId && messages.length > 0) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  };
+
+  if (typeof window !== "undefined") {
     if (messages.length > 0) {
       sessionStorage.setItem("chat_has_messages", "true");
     } else {
       sessionStorage.removeItem("chat_has_messages");
     }
     window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
+  }
+
+  return () => {
+    if (typeof window !== "undefined") {
       window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [userId, messages.length, router, messages]);
+    }
+  };
+}, [userId, messages]);
+
+
 
   const downloadChat = () => {
     const fileName = "chat_history.txt";

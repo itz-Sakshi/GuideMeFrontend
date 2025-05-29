@@ -37,10 +37,12 @@ const Navbar = () => {
         }
       }
     };
+   if (typeof window !== "undefined") {
     const savedLang = sessionStorage.getItem("chat_language") as "en" | "fr";
     if (savedLang) {
       setLanguage(savedLang);
     }
+  }
     getUserName();
   }, [user, pathname]);
   const handleSignOut = async () => {
