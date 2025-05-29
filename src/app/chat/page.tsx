@@ -117,7 +117,7 @@ useEffect(() => {
     try {
       // ---------------------TO DO -----------------------------------
       const promptPrefix =
-        lang === "fr" ? "Répondez à cette question en français : " : "";
+        lang === "fr" ? "Répondez à cette message en français : " : "";
       const res = await axios.post(endpoint, {
         message: promptPrefix + input,
         ...(userId ? { userId } : { previousMessages: messages }),

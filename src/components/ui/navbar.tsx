@@ -9,6 +9,13 @@ import { User } from "next-auth";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 import { refreshUserFlags } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const Navbar = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -37,12 +44,12 @@ const Navbar = () => {
         }
       }
     };
-   if (typeof window !== "undefined") {
-    const savedLang = sessionStorage.getItem("chat_language") as "en" | "fr";
-    if (savedLang) {
-      setLanguage(savedLang);
+    if (typeof window !== "undefined") {
+      const savedLang = sessionStorage.getItem("chat_language") as "en" | "fr";
+      if (savedLang) {
+        setLanguage(savedLang);
+      }
     }
-  }
     getUserName();
   }, [user, pathname]);
   const handleSignOut = async () => {
@@ -111,22 +118,25 @@ const Navbar = () => {
         </>
       )}
       {pathname === "/chat" && (
-        <select
-          value={language}
-          onChange={(e) => {
-            const selectedLang = e.target.value as "en" | "fr";
-            setLanguage(selectedLang);
-            sessionStorage.setItem("chat_language", selectedLang);
-          }}
-          className="bg-white text-black rounded px-2 py-1 text-sm"
+        <Select
           disabled={
             typeof window !== "undefined" &&
             sessionStorage.getItem("chat_has_messages") === "true"
           }
+          onValueChange={(value: "en" | "fr") => {
+            setLanguage(value);
+            sessionStorage.setItem("chat_language", value);
+          }}
+          value={language}
         >
-          <option value="en">English</option>
-          <option value="fr">French</option>
-        </select>
+          <SelectTrigger className="w-[120px] bg-white text-black text-sm rounded">
+            <SelectValue placeholder="Select language" />
+          </SelectTrigger>
+          <SelectContent className="bg-white text-black">
+            <SelectItem value="en">English</SelectItem>
+            <SelectItem value="fr">French</SelectItem>
+          </SelectContent>
+        </Select>
       )}
     </div>
   );
