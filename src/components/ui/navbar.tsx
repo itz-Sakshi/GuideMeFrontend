@@ -129,7 +129,7 @@ const Navbar = () => {
           }}
           value={language}
         >
-          <SelectTrigger className="w-[80px] bg-slate-400 text-black text-sm ml-0 rounded-full">
+          <SelectTrigger className="w-[100px] bg-[#a69b9b] text-black text-sm ml-0 rounded-full">
             <SelectValue placeholder="Select language" />
           </SelectTrigger>
           <SelectContent className="bg-white text-black z-[5001]">
