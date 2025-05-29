@@ -57,7 +57,7 @@ const Navbar = () => {
     await signOut({ callbackUrl: "/" });
   };
   return (
-    <div className="flex max-w-fit fixed top-2 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-[#a69b9b] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2  items-center justify-center space-x-4">
+    <div className="flex max-w-fit fixed top-2 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-[#a69b9b] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] sm:pl-8 py-2 items-center justify-center sm:space-x-4 space-x-1">
       <Link
         href="/"
         className="text-xl font-bold text-black justify-items-center flex"
@@ -129,7 +129,7 @@ const Navbar = () => {
           }}
           value={language}
         >
-          <SelectTrigger className="w-[100px] bg-[#a69b9b] text-black text-sm ml-0 rounded-full">
+          <SelectTrigger className="w-[94px] bg-[#a69b9b] text-black text-sm ml-0 rounded-full">
             <SelectValue placeholder="Select language" />
           </SelectTrigger>
           <SelectContent className="bg-white text-black z-[5001]">
