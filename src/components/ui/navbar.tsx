@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { MessageCircleMoreIcon} from "lucide-react";
+import { MessageCircleMoreIcon } from "lucide-react";
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { Button } from "./button";
 import { useSession, signOut } from "next-auth/react";
@@ -14,10 +14,11 @@ const Navbar = () => {
   const [active, setActive] = useState<string | null>(null);
   const { data: session } = useSession();
   const [name, setName] = useState("");
-  const [hasProfile, setHasProfile]= useState(false);
-  
+  const [hasProfile, setHasProfile] = useState(false);
+
   const user: User = session?.user as User;
   const pathname = usePathname();
+  const [language, setLanguage] = useState<"en" | "fr">("en");
 
   useEffect(() => {
     const getUserName = async () => {
@@ -36,6 +37,10 @@ const Navbar = () => {
         }
       }
     };
+    const savedLang = localStorage.getItem("chat_language") as "en" | "fr";
+    if (savedLang) {
+      setLanguage(savedLang);
+    }
     getUserName();
   }, [user, pathname]);
   const handleSignOut = async () => {
@@ -71,17 +76,23 @@ const Navbar = () => {
       {session ? (
         <>
           <Menu setActive={setActive}>
-            <MenuItem setActive={setActive} active={active} item="User Settings">
+            <MenuItem
+              setActive={setActive}
+              active={active}
+              item="User Settings"
+            >
               <div className="flex flex-col space-y-4 text-sm">
                 <span className="text-xl">
                   Hi, {name !== "" ? name : user.email?.split("@")[0]}
                 </span>
                 <HoveredLink href={`/profile/${user._id}`}>
                   <Button className="w-full">User Profile</Button>
-                </HoveredLink>{hasProfile && 
-                <HoveredLink href={`/resume/${user._id}`}>
-                  <Button className="w-full">Upload Resume</Button>
-                </HoveredLink>}
+                </HoveredLink>
+                {hasProfile && (
+                  <HoveredLink href={`/resume/${user._id}`}>
+                    <Button className="w-full">Upload Resume</Button>
+                  </HoveredLink>
+                )}
                 <Button onClick={handleSignOut}>Log Out</Button>
               </div>
             </MenuItem>
@@ -96,6 +107,24 @@ const Navbar = () => {
             </button>
           </Link>
         </>
+      )}
+      {pathname === "/chat" && (
+        <select
+          value={language}
+          onChange={(e) => {
+            const selectedLang = e.target.value as "en" | "fr";
+            setLanguage(selectedLang);
+            localStorage.setItem("chat_language", selectedLang);
+          }}
+          className="bg-white text-black rounded px-2 py-1 text-sm"
+          disabled={
+            typeof window !== "undefined" &&
+            sessionStorage.getItem("chat_has_messages") === "true"
+          }
+        >
+          <option value="en">English</option>
+          <option value="fr">French</option>
+        </select>
       )}
     </div>
   );

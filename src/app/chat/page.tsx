@@ -22,6 +22,8 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const lang = localStorage.getItem("chat_language") || "en";
+
 
   // const pathname = usePathname();
 
@@ -59,11 +61,16 @@ export default function ChatPage() {
       sessionStorage.setItem("shown_guest_toast", "true");
     }
     if (userId) fetchHistory();
+    if (messages.length > 0) {
+      sessionStorage.setItem("chat_has_messages", "true");
+    } else {
+      sessionStorage.removeItem("chat_has_messages");
+    }
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [userId, messages.length, router]);
+  }, [userId, messages.length, router, messages]);
 
   const downloadChat = () => {
     const fileName = "chat_history.txt";
@@ -93,9 +100,11 @@ export default function ChatPage() {
       : `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/chat/no-user`;
     try {
       // ---------------------TO DO -----------------------------------
+      const promptPrefix =
+        lang === "fr" ? "Répondez à cette question en français : " : "";
       const res = await axios.post(endpoint, {
-        message: input,
-        ...(userId && { userId }),
+        message: promptPrefix + input,
+        ...(userId ? { userId } : { previousMessages: messages }),
       });
 
       const aiReply: Message = {
@@ -121,7 +130,9 @@ export default function ChatPage() {
   return (
     <div className="h-[100vh] min-h-screen w-full  bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
       <div className="h-full p-4 w-[85%] mx-auto space-y-4 mt-14 bg-black z-10">
-        <h1 className="text-xl font-semibold text-white sticky">GuideMe Chat</h1>
+        <h1 className="text-xl font-semibold text-white sticky">
+          GuideMe Chat
+        </h1>
         <div className="border p-4 rounded h-[65%] md:h-[75%] overflow-y-scroll space-y-2 bg-gray-100">
           {messages.map((msg, i) => (
             <div
@@ -171,10 +182,11 @@ export default function ChatPage() {
             className="cursor-pointer p- bg-white text-black hover:bg-slate-500"
             onClick={async () => {
               // ---------------------TO Do -----------------------------
-              if(userId){
-              await axios.delete(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/chat-history/${userId}`
-              );}
+              if (userId) {
+                await axios.delete(
+                  `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/chat-history/${userId}`
+                );
+              }
               setMessages([]);
             }}
           >
