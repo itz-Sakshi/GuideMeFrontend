@@ -57,10 +57,10 @@ const Navbar = () => {
     await signOut({ callbackUrl: "/" });
   };
   return (
-    <div className="flex max-w-fit fixed top-2 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-[#a69b9b] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] sm:pl-8 py-2 px-3 items-center justify-center sm:space-x-4 space-x-2">
+    <div className="flex max-w-fit fixed top-2 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-[#a69b9b] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] sm:pl-8 py-2 px-2 items-center justify-center sm:space-x-4 space-x-2">
       <Link
         href="/"
-        className="text-xl font-bold text-black justify-items-center flex"
+        className="sm:text-xl text-lg font-bold text-black justify-items-center flex"
       >
         GuideMe.ca
       </Link>
@@ -110,7 +110,7 @@ const Navbar = () => {
       ) : (
         <>
           <Link href="/sign-in" className="">
-            <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full hover:border-blue-300 hover:border-x-fuchsia-200 hover:cursor-pointer">
+            <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white sm:px-4 px-2 py-2 rounded-full hover:border-blue-300 hover:border-x-fuchsia-200 hover:cursor-pointer">
               <span>Log In</span>
               <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent to-transparent  h-px" />
             </button>
