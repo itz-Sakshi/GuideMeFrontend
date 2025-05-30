@@ -40,6 +40,16 @@ export default function SignInForm() {
   const { data: session } = useSession();
 
   useEffect(() => {
+    const ua = navigator.userAgent || navigator.vendor;
+    const isInAppBrowser = /FBAN|FBAV|Instagram|Line|Twitter|Snapchat/i.test(
+      ua
+    );
+
+    if (isInAppBrowser) {
+      alert(
+        "Google Sign-In doesn't work inside this browser. Please open GuideMe.ca in Chrome, Safari, or Firefox."
+      );
+    }
     const checkAndRedirect = async () => {
       if (!session) return;
 

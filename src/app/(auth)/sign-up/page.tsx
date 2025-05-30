@@ -26,7 +26,7 @@ import { refreshUserFlags } from "@/lib/utils";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import {User} from "next-auth"
+import { User } from "next-auth";
 import { IconBrandGoogle } from "@tabler/icons-react";
 
 const SignUpPage = () => {
@@ -34,7 +34,6 @@ const SignUpPage = () => {
   const [emailMessage, setEmailMessage] = useState("");
   const [isCheckingEmail, setIsCheckingEmail] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
 
   const debounced = useDebounceCallback(setEmail, 900);
   const router = useRouter();
@@ -49,9 +48,19 @@ const SignUpPage = () => {
     },
   });
 
-  const {data: session} = useSession()
+  const { data: session } = useSession();
 
   useEffect(() => {
+    const ua = navigator.userAgent || navigator.vendor;
+    const isInAppBrowser = /FBAN|FBAV|Instagram|Line|Twitter|Snapchat/i.test(
+      ua
+    );
+
+    if (isInAppBrowser) {
+      alert(
+        "Google Sign-In doesn't work inside this browser. Please open GuideMe.ca in Chrome, Safari, or Firefox."
+      );
+    }
     const checkEmailIsUnique = async () => {
       if (email) {
         setIsCheckingEmail(true);
@@ -116,12 +125,13 @@ const SignUpPage = () => {
   return (
     <div className="flex sm:justify-between justify-center  bg-neutral-950 items-center space-x-6 px-4 md:px-24 h-screen my-auto">
       <div className="sm:w-1/2 sm:block hidden max-w-md rounded-lg shadow-md h-full z-100">
-      <Image className="h-[100vh] w-full"
-        src="/images/SignUp_CN_tower.jpg" // Path to your image (public folder)
-        alt="Example image"
-        width={400} // Desired width
-        height={50} // Desired height
-      />
+        <Image
+          className="h-[100vh] w-full"
+          src="/images/SignUp_CN_tower.jpg" // Path to your image (public folder)
+          alt="Example image"
+          width={400} // Desired width
+          height={50} // Desired height
+        />
       </div>
       <div className="sm:w-1/2 w-full max-w-md p-8 md:p-4 md:mt-14 bg-white rounded-lg space-y-3 shadow-md z-100">
         <div className="text-center">
@@ -177,7 +187,11 @@ const SignUpPage = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full cursor-pointer mt-2" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full cursor-pointer mt-2"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -191,7 +205,10 @@ const SignUpPage = () => {
         </Form>
         <p className="font-semibold w-full text-center md:my-2 my-1">Or</p>
         <div>
-          <Button className="w-full cursor-pointer" onClick={() => signIn("google")}>
+          <Button
+            className="w-full cursor-pointer"
+            onClick={() => signIn("google")}
+          >
             {" "}
             <IconBrandGoogle></IconBrandGoogle>
             Connect With Your Google Account
@@ -207,14 +224,13 @@ const SignUpPage = () => {
         </div>
         <div>
           <Button className="w-full cursor-pointer">
-          <Link href="/chat" className="text-blue-400 hover:text-blue-800">
+            <Link href="/chat" className="text-blue-400 hover:text-blue-800">
               Continue as a Guest
             </Link>
           </Button>
         </div>
-        
       </div>
-      <BackgroundBeams className="z-10"/>
+      <BackgroundBeams className="z-10" />
     </div>
   );
 };
