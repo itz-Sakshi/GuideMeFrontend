@@ -27,6 +27,7 @@ import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import {User} from "next-auth"
+import { IconBrandGoogle } from "@tabler/icons-react";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
@@ -192,6 +193,7 @@ const SignUpPage = () => {
         <div>
           <Button className="w-full cursor-pointer" onClick={() => signIn("google")}>
             {" "}
+            <IconBrandGoogle></IconBrandGoogle>
             Connect With Your Google Account
           </Button>
         </div>
