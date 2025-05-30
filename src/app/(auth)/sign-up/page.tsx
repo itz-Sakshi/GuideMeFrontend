@@ -52,14 +52,20 @@ const SignUpPage = () => {
 
   useEffect(() => {
     const ua = navigator.userAgent || navigator.vendor;
-    const isInAppBrowser = /FBAN|FBAV|Instagram|Line|Twitter|Snapchat/i.test(
-      ua
-    );
+    const isInAppBrowser =
+      /FBAN|FBAV|Instagram|Line|Twitter|Snapchat|LinkedIn/i.test(ua);
 
     if (isInAppBrowser) {
-      alert(
-        "Google Sign-In doesn't work inside this browser. Please open https://guide-me-ca.vercel.app/ in Chrome, Safari, or Firefox."
-      );
+      toast("Google Sign-In might not work here.", {
+        id: "browser-warning",
+        description:
+          "Please open https://guide-me-ca.vercel.app/ in Safari or Chrome for a smoother experience.",
+        duration: Infinity,
+        cancel: {
+          label: "Got it",
+          onClick: () => {},
+        },
+      });
     }
     const checkEmailIsUnique = async () => {
       if (email) {
