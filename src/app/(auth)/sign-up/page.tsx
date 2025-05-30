@@ -58,7 +58,7 @@ const SignUpPage = () => {
 
     if (isInAppBrowser) {
       alert(
-        "Google Sign-In doesn't work inside this browser. Please open GuideMe.ca in Chrome, Safari, or Firefox."
+        "Google Sign-In doesn't work inside this browser. Please open https://guide-me-ca.vercel.app/ in Chrome, Safari, or Firefox."
       );
     }
     const checkEmailIsUnique = async () => {
